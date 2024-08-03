@@ -3,6 +3,7 @@ package telran.shapes;
 public class Rectangle implements Shape {
     private int width;
     private int height;
+    
     public Rectangle(int width, int height){
         this.width = width;
         this.height = height;
@@ -14,7 +15,7 @@ public class Rectangle implements Shape {
     }
 
     @Override
-    public int square() {
+    public int area() {
         return width * height;
     }
 

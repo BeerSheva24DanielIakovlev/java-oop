@@ -3,25 +3,37 @@ package telran.shapes;
 import telran.util.Arrays;
 
 public class Canvas implements Shape{
-Shape[] shapes;
-public Canvas() {
-    shapes = new Shape[0];
-}
-void addShape(Shape shape) {
-    //TODO
-}
-    @Override
-    public int perimiter() {
-        // TODO 
-        //sum of all included shape perimiters 
-        throw new UnsupportedOperationException("Unimplemented method 'perimiter'");
+    Shape[] shapes;
+    public Canvas() {
+        shapes = new Shape[0];
     }
+    public void addShape(Shape shape) {
+        Shape[] newShapes = new Shape[shapes.length + 1];
+        System.arraycopy(shapes, 0, newShapes, 0, shapes.length);
+        newShapes[shapes.length]=shape;
+        shapes = newShapes;
+    }
+        @Override
+        public int perimiter() {
+            int newPerimiter = 0;
 
-    @Override
-    public int square() {
-        // TODO 
-        //sum of all included shape squares
-        throw new UnsupportedOperationException("Unimplemented method 'square'");
-    }
+            for(Shape j : shapes) {
+                newPerimiter = newPerimiter + j.perimiter();
+            }
+            return newPerimiter;
+            // TODO 
+            //sum of all included shape perimiters 
+        }
+
+        @Override
+        public int area() {
+            int newArea = 0;
+            for(Shape j : shapes) {
+                newArea = newArea + j.area();
+            }
+            return newArea;
+            // TODO 
+            //sum of all included shape squares
+        }
 
 }
