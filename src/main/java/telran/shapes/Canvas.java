@@ -8,22 +8,16 @@ public class Canvas implements Shape{
         shapes = new Shape[0];
     }
     public void addShape(Shape shape) {
-        /*Shape[] newShapes = new Shape[shapes.length + 1];
-        System.arraycopy(shapes, 0, newShapes, 0, shapes.length);
-        newShapes[shapes.length]=shape;
-        shapes = newShapes;*/
         shapes = Arrays.insert(shapes, shapes.length, shape);
     }
         @Override
-        public int perimiter() {
+        public int perimeter() {
             int newPerimiter = 0;
 
             for(Shape j : shapes) {
-                newPerimiter += + j.perimiter();
+                newPerimiter += + j.perimeter();
             }
             return newPerimiter;
-            // TODO 
-            //sum of all included shape perimiters 
         }
 
         @Override
@@ -33,8 +27,18 @@ public class Canvas implements Shape{
                 newArea += j.area();
             }
             return newArea;
-            // TODO 
-            //sum of all included shape squares
         }
 
+        public int count() {
+            int totalShapes = 0;
+            for (Shape shape : shapes) {
+                if (shape instanceof Canvas) {
+                    totalShapes ++;
+                    totalShapes += ((Canvas) shape).count();
+                } else {
+                    totalShapes++;
+                }
+            }
+            return totalShapes;    
+        }
 }
